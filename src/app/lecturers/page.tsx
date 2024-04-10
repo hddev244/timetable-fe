@@ -59,7 +59,7 @@ function LecturersPage() {
 
     return (
         <>
-        <h1 className="text-2xl mb-4">Lecturer Management</h1>
+        <h1 className="text-3xl uppercase mb-4 font-semibold">Quản lý giảng viên</h1>
                 <form onSubmit={handleSubmit} className="mb-8">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -89,7 +89,7 @@ function LecturersPage() {
                             />
                         </div>
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end p-4">
                         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
                             Save
                         </button>
@@ -99,14 +99,14 @@ function LecturersPage() {
                     </div>
                 </form>
                 <hr />
-                <h2 className="text-xl p-4 mb-4">Lecturers</h2>
+                <h2 className="text-xl p-4 mb-4">Danh sách giảng viên</h2>
                 <table className="w-full border-collapse mb-8">
                     <thead>
                         <tr>
                             <th className="border border-gray-400 px-4 py-2">#</th>
                             <th className="border border-gray-400 px-4 py-2">ID</th>
-                            <th className="border border-gray-400 px-4 py-2">Name</th>
-                            <th className="border border-gray-400 px-4 py-2">Subjects</th>
+                            <th className="border border-gray-400 px-4 py-2">Họ và Tên</th>
+                            <th className="border border-gray-400 px-4 py-2">Môn học có thể dạy</th>
                             <th className="border border-gray-400 px-4 py-2">Actions</th>
                         </tr>
                     </thead>
@@ -129,9 +129,9 @@ function LecturersPage() {
                                         </div>
                                     </td>
                                     <td className="border border-gray-400 px-4 py-2">
-                                        <button className="bg-blue-500 text-white px-2 py-1 rounded-md">Edit</button>
-                                        <Link href={`/lecturers/${lecturer.id}`} className="bg-gray-500 mx-2 text-white p-2 rounded-md ">Change Subject can teach</Link>
-                                        <button className="bg-red-500 text-white px-2 py-1 rounded-md  ">Delete</button>
+                                        <button className="bg-blue-500 text-white px-2 py-1 rounded-md">Sửa</button>
+                                        <Link href={`/lecturers/${lecturer.id}`} className="bg-gray-500 mx-2 text-white p-2 rounded-md ">Thay đổi môn</Link>
+                                        <button className="bg-red-500 text-white px-2 py-1 rounded-md  ">Xóa</button>
                                     </td>
                                 </tr>
                             ))}

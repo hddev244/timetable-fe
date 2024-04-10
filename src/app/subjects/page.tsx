@@ -70,10 +70,10 @@ const SubjectManagement: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl mb-4">Subject Management</h1>
+      <h1 className="text-3xl font-semibold  mb-4">Quản lý môn học</h1>
       <form onSubmit={handleSubmit} className="mb-8 w-1/2 m-auto">
         <div>
-          <label htmlFor="id" className="block mb-1">ID:</label>
+          <label htmlFor="id" className="block mb-1">Mã môn:</label>
           <input
             type="text"
             id="id"
@@ -84,7 +84,7 @@ const SubjectManagement: React.FC = () => {
           />
         </div>
         <div>
-          <label htmlFor="name" className="block mb-1">Name:</label>
+          <label htmlFor="name" className="block mb-1">Tên môn học:</label>
           <input
             type="text"
             id="name"
@@ -95,17 +95,17 @@ const SubjectManagement: React.FC = () => {
           />
         </div>
         <div>
-          <label htmlFor="numOfPeriods" className="block mb-1">Number of Periods:</label>
+          <label htmlFor="numOfPeriods" className="block mb-1">Số ca / tuần:</label>
           <input
             type="number"
             id="numOfPeriods"
             value={numOfPeriods}
             onChange={(e) => setNumOfPeriods(parseInt(e.target.value))}
-            className="w-full border-gray-300 rounded-md p-2"
+            className="w-full border-gray-300 border rounded-md p-2"
             placeholder="Enter Number of Periods"
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-end p-4">
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
           <button type="button" className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md">Cancel</button>
         </div>

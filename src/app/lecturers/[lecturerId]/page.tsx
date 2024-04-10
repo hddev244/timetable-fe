@@ -81,15 +81,13 @@ function LecturePage({ params }: {
                 <div>
                 <Link href="/lecturers" 
                 className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl'>Back</Link>
-                <label htmlFor="subject" className="block mt-4 mb-1">
-                    <h2>
-                        Mã giảng viên: {lecturer.id}
+                <div className="block mt-4 border p-4 mb-4">
+                    <h2> Mã giảng viên: </h2>
                         <br />
-                        Tên giảng viên: {lecturer.name}
-                    </h2>
-
-                    Chọn môn học cho giảng viên:
-                </label>
+                    <h2>Tên giảng viên: <span className='font-semibold'>{lecturer.name}</span></h2>
+                    
+                </div>
+                <span className='font-semibold text-2xl my-10'>Môn học có thể dạy:</span>
                 <div className="grid grid-cols-4 gap-4 mt-4  w-full">
                     {subjects.map((subject) => (
                         <div

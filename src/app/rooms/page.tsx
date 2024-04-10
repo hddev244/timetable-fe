@@ -12,6 +12,7 @@ const RoomManagement: React.FC = () => {
   const [roomOrdinalNumber, setRoomOrdinalNumber] = useState<number>(0);
   const [name, setName] = useState<string>('');
   const [rooms, setRooms] = useState<Room[]>([]);
+  const [checkChanged, setCheckChanged] = useState(false);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -28,7 +29,7 @@ const RoomManagement: React.FC = () => {
     };
     fetchRooms();
   }
-    , []);
+    , [checkChanged]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,7 +59,8 @@ const RoomManagement: React.FC = () => {
         setRooms(updatedRooms);
         setId(0);
         setName('');
-        setRoomOrdinalNumber(0);
+        setRoomOrdinalNumber(roomOrdinalNumber + 1);
+        setCheckChanged(!checkChanged);
       } catch (error) {
         console.error('Error fetching rooms:', error);
       }

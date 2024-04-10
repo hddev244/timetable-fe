@@ -18,7 +18,7 @@ const ClassesPage: NextPage = () => {
   const [schoolYears, setSchoolYears] = useState<SchoolYear[]>([]);
 
   const [id, setId] = useState('');
-  const [name, setName] = useState('');
+  const [name, setName] = useState('class name');
   const [major, setMajor] = useState('');
   const [schoolYear, setSchoolYear] = useState('');
 
@@ -53,7 +53,6 @@ const ClassesPage: NextPage = () => {
         }
         const jsonData = await response.json();
         setSchoolYears(jsonData);
-        console.log(jsonData);
       } catch (error) {
         console.error('Error fetching school-years:', error);
       }
@@ -72,6 +71,7 @@ const ClassesPage: NextPage = () => {
         }
         const jsonData = await response.json();
         setGroupStudents(jsonData);
+        console.log(jsonData);
       } catch (error) {
         console.error('Error fetching group-students:', error);
       }
@@ -91,7 +91,6 @@ const ClassesPage: NextPage = () => {
     }
     const newId = major + schoolYear + id;
     const newGroupStudent = { id: newId, name, major, schoolYear };
-    console.log(newGroupStudent);
     const fetchUrl = 'http://localhost:8080/api/groupStudents';
     const fetchData = async () => {
       try {
@@ -108,7 +107,7 @@ const ClassesPage: NextPage = () => {
         const jsonData = await response.json();
         setGroupStudents([...groupStudents, jsonData]);
         setId('');
-        setName('');
+        setName('asdasd');
         setMajor('');
         setSchoolYear('');
         alert('Thêm thành công!');
@@ -146,11 +145,11 @@ const ClassesPage: NextPage = () => {
     <>
     {}
       <div className="p-6">
-        <h1 className="text-2xl mb-4">Group Student Management</h1>
+        <h1 className="text-3xl font-semibold uppercase mb-4">Quản lý lớp học</h1>
         <form onSubmit={handleSubmit} className="mb-8">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="id" className="block mb-1">ID:</label>
+              <label htmlFor="id" className="block mb-1">Mã lớp:</label>
               <div className=" flex items-center space-x-2">
                 <span>{major}{schoolYear}</span><input
                   type="text"
@@ -163,7 +162,7 @@ const ClassesPage: NextPage = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="name" className="block mb-1">Name:</label>
+              <label htmlFor="name" className="block mb-1">Tên  lớp:</label>
               <input
                 type="text"
                 id="name"
@@ -174,14 +173,14 @@ const ClassesPage: NextPage = () => {
               />
             </div>
             <div>
-              <label htmlFor="major" className="block mb-1">Major:</label>
+              <label htmlFor="major" className="block mb-1">Ngành học:</label>
               <select
                 id="major"
                 value={major}
                 onChange={(e) => setMajor(e.target.value)}
                 className="w-full border border-gray-500 rounded-md p-2"
               >
-                <option value="">Select Major</option>
+                <option value="">Chọn ngành</option>
                 {
                   majors.map((major, index) => (
                     <option key={index} value={major.id}>{major.name} ({major.id})</option>
@@ -190,7 +189,7 @@ const ClassesPage: NextPage = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="schoolYear" className="block mb-1">School Year:</label>
+              <label htmlFor="schoolYear" className="block mb-1">Khóa</label>
 
               <select
                 id="schoolYear"
@@ -198,7 +197,7 @@ const ClassesPage: NextPage = () => {
                 onChange={(e) => setSchoolYear(e.target.value)}
                 className="w-full border border-gray-500 rounded-md p-2"
               >
-                <option value="">Select School Year</option>
+                <option value="">Chọn khóa học</option>
                 {
                   schoolYears.map((schoolYear, index) => (
                     <option key={index} value={schoolYear.id}>{schoolYear.name}</option>
@@ -212,14 +211,14 @@ const ClassesPage: NextPage = () => {
             <button type="button" className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md">Cancel</button>
           </div>
         </form>
+        <h1 className="m-4 text-xl font-semibold"> Danh sách lớp học</h1>
         <table className="w-full border-collapse">
           <thead>
             <tr>
               <th className="border border-gray-400 px-4 py-2">#</th>
-              <th className="border border-gray-400 px-4 py-2">SCHOOL YEAR</th>
-              <th className="border border-gray-400 px-4 py-2">MAJOR</th>
-              <th className="border border-gray-400 px-4 py-2">ID</th>
-              <th className="border border-gray-400 px-4 py-2">Name</th>
+              <th className="border border-gray-400 px-4 py-2">Khóa</th>
+              <th className="border border-gray-400 px-4 py-2">Ngành học</th>
+              <th className="border border-gray-400 px-4 py-2">Mã lớp</th>
               <th className="border border-gray-400 px-4 py-2">Action</th>
             </tr>
           </thead>
@@ -230,13 +229,12 @@ const ClassesPage: NextPage = () => {
                 <td className="border border-gray-400 px-4 py-2">{groupStudent.schoolYear?.name}</td>
                 <td className="border border-gray-400 px-4 py-2">{groupStudent.major?.name}</td>
                 <td className="border border-gray-400 px-4 py-2">{groupStudent.id}</td>
-                <td className="border border-gray-400 px-4 py-2">{groupStudent.name}</td>
                 <td className="border border-gray-400 px-4 py-2 ">
                   <Link href={`/classes/${groupStudent.id}`}
                     className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                  >Add Subject</Link>
-                  <button type="button" onClick={handleEdit(groupStudent)} className="ml-2 bg-emerald-500 text-white px-4 py-2 rounded-md">edit</button>
-                  <button type="button" onClick={handleDelete(groupStudent.id)} className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md">delete</button>
+                  >Thêm môn học</Link>
+                  <button type="button" onClick={handleEdit(groupStudent)} className="ml-2 bg-emerald-500 text-white px-4 py-2 rounded-md">Sửa</button>
+                  <button type="button" onClick={handleDelete(groupStudent.id)} className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md">xóa</button>
                 </td>
 
               </tr>
